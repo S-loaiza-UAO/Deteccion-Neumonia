@@ -1,4 +1,5 @@
-## Hola! Bienvenido a la herramienta para la detección rápida de neumonía
+## 🚀🩺 Detección Rápida de Neumonía: IA para Diagnósticos Veloces 🧠✨
+### Repositorio modificado por: Santiago.Loaiza
 
 Deep Learning aplicado en el procesamiento de imágenes radiográficas de tórax en formato DICOM con el fin de clasificarlas en 3 categorías diferentes:
 
