@@ -17,6 +17,7 @@ Aplicación de una técnica de explicación llamada Grad-CAM para resaltar con u
 ## Uso de la herramienta:
 
 A continuación le explicaremos cómo empezar a utilizarla.
+### Metodo #1: Anaconda
 
 Requerimientos necesarios para el funcionamiento:
 
@@ -29,13 +30,36 @@ Requerimientos necesarios para el funcionamiento:
 
   conda activate tf
 
-  cd UAO-Neumonia
+  cd -Direccion de ubicacion del proyecto en su local-
 
   pip install -r requirements.txt
 
   python detector_neumonia.py
 
-Uso de la Interfaz Gráfica:
+### Metodo #2: Visual Studio Code
+
+Requerimientos necesarios para el funcionamiento:
+
+- Instale Visual Studio Code para windows desde: 
+  https://code.visualstudio.com/download
+
+- Instale Pack de python para gestionar los entonrnos
+
+- Cree un entorno con extencion .conda
+
+- Abra el terminal recien creado y ejecute los mismos comandos
+
+  conda create -n tf tensorflow
+
+  conda activate tf
+
+  cd -Direccion de ubicacion del proyecto en su local-
+
+  pip install -r requirements.txt
+
+  python detector_neumonia.py
+
+### Uso de la Interfaz Gráfica:
 
 - Ingrese la cédula del paciente en la caja de texto
 - Presione el botón 'Cargar Imagen', seleccione la imagen del explorador de archivos del computador (Imagenes de prueba en https://drive.google.com/drive/folders/1WOuL0wdVC6aojy8IfssHcqZ4Up14dy0g?usp=drive_link)

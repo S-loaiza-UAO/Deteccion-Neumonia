@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#IMPORTE DE LIBRERIAS
 from tkinter import *
-from tkinter import ttk, font, filedialog
+from tkinter import ttk, font, filedialog, Entry
 from tkinter.messagebox import askokcancel, showinfo, WARNING
-
 import getpass
 from PIL import ImageTk, Image
 import csv
@@ -14,19 +14,20 @@ import img2pdf
 import numpy as np
 import time
 import tensorflow as tf
-from keras import backend as K
 import pydicom as dicom
+from keras import backend as K
 import cv2
 
 tf.compat.v1.disable_eager_execution()
 tf.compat.v1.experimental.output_all_intermediates(True)
 
+#uBICACION DEL MODELO .h5
 model_path = 'C:/Users/san_l/Deteccion-Neumonia-UAO/conv_MLP_84.h5'
 model = tf.keras.models.load_model(model_path)
 
 def grad_cam(array):
     img = preprocess(array)
-    #model = model_cnn()
+    #model = model_fun()
     preds = model.predict(img)
     argmax = np.argmax(preds[0])
     output = model.output[:, argmax]
@@ -37,7 +38,6 @@ def grad_cam(array):
     pooled_grads_value, conv_layer_output_value = iterate(img)
     for filters in range(64):
         conv_layer_output_value[:, :, filters] *= pooled_grads_value[filters]
-    
     # creating the heatmap
     heatmap = np.mean(conv_layer_output_value, axis=-1)
     heatmap = np.maximum(heatmap, 0)  # ReLU
@@ -59,7 +59,7 @@ def predict(array):
     batch_array_img = preprocess(array)
     #   2. call function to load model and predict: it returns predicted class and probability
     #model = model_fun()
-    #model_cnn = tf.keras.models.load_model('conv_MLP_84.h5')
+    # model_cnn = tf.keras.models.load_model('conv_MLP_84.h5')
     prediction = np.argmax(model.predict(batch_array_img))
     proba = np.max(model.predict(batch_array_img)) * 100
     label = ""
@@ -70,7 +70,7 @@ def predict(array):
     if prediction == 2:
         label = "viral"
     #   3. call function to generate Grad-CAM: it returns an image with a superimposed heatmap
-    heatmap = grad_cam(array, model)
+    heatmap = grad_cam(array)
     return (label, proba, heatmap)
 
 
@@ -184,7 +184,7 @@ class App:
 
         #   NUMERO DE IDENTIFICACIÓN PARA GENERAR PDF
         self.reportID = 0
-        
+
         #   RUN LOOP
         self.root.mainloop()
 
@@ -202,7 +202,7 @@ class App:
         )
         if filepath:
             self.array, img2show = read_dicom_file(filepath)
-            self.img1 = img2show.resize((250, 250), Image.LANCZOS)  ## ANTIALIAS se modifica por LANCZOS
+            self.img1 = img2show.resize((250, 250), Image.LANCZOS)
             self.img1 = ImageTk.PhotoImage(self.img1)
             self.text_img1.image_create(END, image=self.img1)
             self.button1["state"] = "enabled"
@@ -210,9 +210,9 @@ class App:
     def run_model(self):
         self.label, self.proba, self.heatmap = predict(self.array)
         self.img2 = Image.fromarray(self.heatmap)
-        self.img2 = self.img2.resize((250, 250), Image.LANCZOS)  ## ANTIALIAS se modifica por LANCZOS
+        self.img2 = self.img2.resize((250, 250), Image.LANCZOS)
         self.img2 = ImageTk.PhotoImage(self.img2)
-        ##print("OK") ## este mensaje no genera ninguna accion importante
+        print("OK")
         self.text_img2.image_create(END, image=self.img2)
         self.text2.insert(END, self.label)
         self.text3.insert(END, "{:.2f}".format(self.proba) + "%")
