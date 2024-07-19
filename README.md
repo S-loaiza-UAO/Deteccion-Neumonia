@@ -43,9 +43,9 @@ Requerimientos necesarios para el funcionamiento:
 - Instale Visual Studio Code para windows desde: 
   https://code.visualstudio.com/download
 
-- Instale Pack de python para gestionar los entonrnos
+- Abra VScode e instale pack de python para gestionar los entornnos
 
-- Cree un entorno con extencion .conda
+- Cree un entorno con extension .conda
 
 - Abra el terminal recien creado y ejecute los mismos comandos
 
