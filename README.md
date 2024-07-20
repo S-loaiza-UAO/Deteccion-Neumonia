@@ -43,7 +43,7 @@ Requerimientos necesarios para el funcionamiento:
 - Instale Visual Studio Code para windows desde: 
   https://code.visualstudio.com/download
 
-- Abra VScode e instale pack de python para gestionar los entornnos
+- Abra VScode e instale pack de python para gestionar los entornos
 
 - Cree un entorno con extension .conda
 
@@ -99,7 +99,7 @@ Script que recibe el arreglo proveniento de read_img.py, realiza las siguientes 
 
 ## load_model.py
 
-Script que lee el archivo binario del modelo de red neuronal convolucional previamente entrenado llamado 'WilhemNet86.h5'.
+Script que lee el archivo binario del modelo de red neuronal convolucional previamente entrenado llamado 'conv_MLP_84.h5'.
 
 ## grad_cam.py
 
