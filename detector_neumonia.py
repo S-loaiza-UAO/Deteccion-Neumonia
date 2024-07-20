@@ -22,7 +22,7 @@ tf.compat.v1.disable_eager_execution()
 tf.compat.v1.experimental.output_all_intermediates(True)
 
 #uBICACION DEL MODELO .h5
-model_path = 'C:/Users/san_l/Deteccion-Neumonia-UAO/conv_MLP_84.h5'
+model_path = 'C:/Users/san_l/Deteccion-Neumonia-UAO/Deteccion-Neumonia/conv_MLP_84.h5'
 model = tf.keras.models.load_model(model_path)
 
 def grad_cam(array):
