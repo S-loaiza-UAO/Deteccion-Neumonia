@@ -22,7 +22,7 @@ tf.compat.v1.disable_eager_execution()
 tf.compat.v1.experimental.output_all_intermediates(True)
 
 #uBICACION DEL MODELO .h5
-model_path = 'C:/Users/san_l/Deteccion-Neumonia-UAO/Deteccion-Neumonia/conv_MLP_84.h5'
+model_path = 'conv_MLP_84.h5'
 model = tf.keras.models.load_model(model_path)
 
 def grad_cam(array):
@@ -201,7 +201,11 @@ class App:
             ),
         )
         if filepath:
-            self.array, img2show = read_dicom_file(filepath)
+            if filepath.lower().endswith('.dcm'):
+                self.array, img2show = read_dicom_file(filepath)
+            else:
+                self.array, img2show = read_jpg_file(filepath)
+            
             self.img1 = img2show.resize((250, 250), Image.LANCZOS)
             self.img1 = ImageTk.PhotoImage(self.img1)
             self.text_img1.image_create(END, image=self.img1)
