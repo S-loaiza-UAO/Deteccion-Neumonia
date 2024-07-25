@@ -135,7 +135,37 @@ Despues podra ejecutar el siguiente comando:
 
 - pytest
 
+## Pruebas contenedor Docker
+
+Para realizar las pruebas con Docker, asegúrate de tener las dependencias instaladas en este caso para Windows son:
+
+- Descargar Xming desde https://sourceforge.net/projects/xming/  
+
+Esta aplicación se estará ejecutando en segundo plano (Verificar desde el administrador de tareas)
+
+Ahora desde el terminal de preferencia ejecuta los siguientes comandos:
+
+-git clone https://github.com/S-loaiza-UAO/Deteccion-Neumonia.git
+
+Desde la ubicacion del repositorio clonado ejecuta:
+
+- docker build -t deteccion-neumonia:latest .
+
+Iniciará el procese de crear la imagen con la informacion requerida. Finalizado el proceso de creacion ejecuta:
+
+- docker run -it -e DISPLAY=host.docker.internal:0.0 deteccion-neumonia python3 detector_neumonia.py
+
+<deteccion-neumonia> seria el nombre de la imagen creada, en caso de que la imagen creada tenga otro nombre se debe modificar.
+<detector_neumonia.py> seria el nombre de la app de python, en caso de tenerla con un nombre diferente se debe modificar.
+
+En este punto se debe estar ejecutando la aplicación Xming con la interfas grafica de Tkinter y se podra hacer uso del modelo de diagnostico.
+
 ## Proyecto original realizado por:
 
 Isabella Torres Revelo - https://github.com/isa-tr
 Nicolas Diaz Salazar - https://github.com/nicolasdiazsalazar
+
+## Adaptacion académica para entrega de proyecto:
+
+Santiago Loaiza Cardona https://github.com/S-loaiza-UAO
+Julio del 2024
