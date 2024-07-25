@@ -4,7 +4,9 @@ FROM python:3.10
 # Instalamos las dependencias del sistema
 RUN apt-get update && apt-get install -y \
     python3-opencv \
-    && rm -rf /var/lib/apt/lists/* 
+    gnome-screenshot \
+    libgl1 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Establecemos el directorio de trabajo en el contenedor
 WORKDIR /home/src
